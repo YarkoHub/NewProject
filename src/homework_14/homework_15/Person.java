@@ -1,6 +1,4 @@
-package homework_15;
-
-import java.util.Random;
+package homework_14.homework_15;
 
 // Возраст 13 и 14
 public class Person {
