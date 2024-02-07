@@ -1,5 +1,7 @@
 package homework_15;
 
+import java.util.Random;
+
 // Возраст 13 и 14
 public class Person {
     String name;
@@ -22,33 +24,6 @@ public class Person {
                 ", traum='" + traum + '\'' +
                 ", age=" + age +
                 '}';
-    }
-
-    public String getName() {
-        return name;
-
-    }
-
-    public String getHooby() {
-        return hooby;
-    }
-
-    public String getTraum() {
-        return traum;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    void  tv () {
-        System.out.println("Смотрит телевизор ");
-    }
-    void plays (){
-        System.out.println("Играет на компьютере ");
-    }
-    void study (){
-        System.out.println("Учатся в школе ");
     }
 
 }
