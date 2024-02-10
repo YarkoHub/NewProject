@@ -20,12 +20,12 @@ public class HW14_Task3 {
     }
 
 
-    public static int searchString(String[] strings, String findMe) {
-        if (strings == null || findMe == null) return -1;
+    public static int searchString(String[] strings, String fidMe) {
+        if (strings == null || fidMe == null) return -1;
 
         for (int i = 0; i < strings.length; i++) {
 //            if (strings[i] != null  && strings[i].equals(findMe)) return i; // строгое равенство с учетом регистров
-            if (strings[i] != null  && strings[i].equalsIgnoreCase(findMe)) return i; // метод сравнения значений строк без учета регистра
+            if (strings[i] != null  && strings[i].equalsIgnoreCase(fidMe)) return i; // метод сравнения значений строк без учета регистра
         }
 
         return -1;
