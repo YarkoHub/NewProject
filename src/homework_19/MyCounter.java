@@ -3,7 +3,7 @@ package homework_19;
 public class MyCounter {
     public static void main(String[] args) {
 
-        Counter counter = new Counter(0); // Создание счетчика с начальным значением 0
+        Counter counter = new Counter(0);
 
         counter.increment();
         counter.decrement();
