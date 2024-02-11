@@ -8,25 +8,30 @@ package homework_19;
 Методы increment() и decrement(), увеличивающие и уменьшающие
 значение счётчика соответственно.
 Метод getValue() для получения текущего значения счётчика.
-
  */
 public class Counter {
 
-int vaule;
+    private int value; // Поле для хранения текущего значения счетчика
 
-    public Counter(int vaule) {
-        this.vaule = vaule;
-    }
-
-    void increment(){
-        vaule++;
-    }
-    void decrement(){
-        vaule--;
+    // Конструктор для инициализации счетчика с начальным значением
+    public Counter(int initialValue) {
+        this.value = initialValue;
     }
 
-    public int getVaule() {
-        return vaule;
+    // Метод для увеличения значения счетчика на 1
+    public void increment() {
+        value++;
     }
+
+    // Метод для уменьшения значения счетчика на 1
+    public void decrement() {
+        value--;
+    }
+
+    // Метод для получения текущего значения счетчика
+    public int getValue() {
+        return value;
+    }
+
 
 }

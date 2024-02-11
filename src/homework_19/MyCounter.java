@@ -5,13 +5,12 @@ public class MyCounter {
 
         Counter counter = new Counter(0);
 
-        counter.increment();
-        counter.decrement();
+        System.out.println("Текущее значение счетчика: " + counter.getValue());
 
-        System.out.println("Начальное значение счетчика: " + counter.getVaule());
-        System.out.println("Значение счетчика после увеличения: " + counter.getVaule());
-        System.out.println("Значение счетчика после уменьшения: " + counter.getVaule());
+        counter.increment(); // Увеличение счетчика на 1
+        System.out.println("Текущее значение счетчика после увеличения: " + counter.getValue());
 
-
+        counter.decrement(); // Уменьшение счетчика на 1
+        System.out.println("Текущее значение счетчика после уменьшения: " + counter.getValue());
     }
 }

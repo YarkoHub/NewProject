@@ -2,7 +2,6 @@ package lesson_16;
 
 public class Dog {
 
-
     String name;
     int weight;
 
@@ -12,29 +11,22 @@ public class Dog {
     }
 
     void eat() {
-        System.out.println("Я ем вкусную косточку");
+        System.out.println("Я вкусно ем!");
         weight++;
     }
 
     void run() {
+        System.out.println("Я бытcро бегаю");
+        weight -= 2;
 
-        // Проверяем - позволяет ли вес собаке бегать сейчас
-        // если нет - отправить ее поесть.
-        // После еды - проверить пункт 1.
-        // цикл?
 
         while (weight < 3) {
-            System.out.println("Сорян! Я слишком худая и голодная :( Бежать не могу...");
-            System.out.println("Мой вес: " + weight + ". Надо поесть!");
+            System.out.println("Сорян я худая жрать хочу");
             eat();
         }
-
-        System.out.println("Я бегу!");
-        weight -= 2;
     }
-
     String whoAmI() {
         return "I am dog: " + this.name + " my weight: " + weight;
     }
-
 }
+

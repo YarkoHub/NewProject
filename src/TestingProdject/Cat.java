@@ -6,6 +6,9 @@ public class Cat {
     String color;
     int age;
 
+
+
+
 // КОНСТРУКТОР ПО УМОЧАНИЮ
     public Cat(String name, String color, int age) {
         this.name = name;

@@ -4,7 +4,7 @@ public class MainDogs {
 
     public static void main(String[] args) {
 
-        Dog dog = new Dog("Boss", 7);
+    Dog dog = new Dog("Boss", 7);
 
         System.out.println(dog.whoAmI());
 
@@ -16,5 +16,7 @@ public class MainDogs {
 
         System.out.println(" \n====================== ");
         System.out.println(dog.whoAmI());
+
+
     }
 }
