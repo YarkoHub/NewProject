@@ -1,9 +1,12 @@
 package lesson_20;
-
+/*
+HW
+В классе SpecialBus реализовать метод public boolean takePassengerWithBicycle() - посадка в автобус пассажира с велосипедом
+ */
 public class SpecialBus extends Bus {
 
-    private int bicyclePlaces;
-    private int bicyclesCount; // по дефолту инициализируется 0
+    private int bicyclePlaces; // всего мест в автобусе для велосипедов // capacity
+    private int bicyclesCount; // по дефолту инициализируется 0 // сколько сейчас в автобусе велосипедов
 
 
     public SpecialBus(String model, int yearManufactured, int capacity, int bicyclePlaces) {
@@ -18,6 +21,21 @@ public class SpecialBus extends Bus {
         // если место для обоих - обоих на борт
         // если для кого-то нет места - никого не садим в автобус
 
+
+        if (bicyclesCount < bicyclePlaces && takePassenger()) { // место для велосипеда есть, тогда пытаемся взять пассажира
+//            boolean isPassengerEntry = takePassenger(); //
+//            if (isPassengerEntry) { //  пассажира посадили в автобус
+
+
+            // Если есть место для вело и пассажир сел в автобус
+            bicyclesCount++; // берем на бор велосипед
+            System.out.println("Пассажир и велосипед сели а автобус: " + getModel());
+            return true;
+//            }
+        }
+
+        // здесь окажемся, если велосипед и/или пассажир не поместились в автобус
+        System.out.println("Пассажир и велосипед НЕ поместились в автобус: " + getModel());
         return false;
     }
 
@@ -33,7 +51,6 @@ public class SpecialBus extends Bus {
     public int example() {
         return super.getCapacity();
     }
-
 
 
 
