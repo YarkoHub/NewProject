@@ -1,4 +1,4 @@
-package homework_22;
+package homework_22.abstractP;
 
 public class SuperAbstract {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package homework_22;
+package homework_22.runners;
 
 public class Runners {
 
