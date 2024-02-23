@@ -1,6 +1,6 @@
 package lesson_24.printers;
 
-import java.awt.print.Printable;
+
 
 public class PrintApp {
 

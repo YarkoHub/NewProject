@@ -1,4 +1,4 @@
-package lesson_25.generics;
+package lesson_25;
 
 public class Wrappers {
     /*

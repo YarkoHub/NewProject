@@ -1,8 +1,6 @@
-package lesson_23;
+package homework_22.transport;
 
-
-
-public class Car extends Vehicle {
+public class Car extends Vehicle{
 
     // Убираю пустой конструктор. Нельзя машину без двигателя
 //    public Car() {

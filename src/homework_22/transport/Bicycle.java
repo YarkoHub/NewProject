@@ -1,8 +1,6 @@
-package lesson_23;
+package homework_22.transport;
 
-
-
-public class Bicycle extends Vehicle {
+public class Bicycle extends Vehicle{
 
     @Override
     public String toString() {
@@ -13,5 +11,4 @@ public class Bicycle extends Vehicle {
     public void startEngine() {
         System.out.println("У велосипеда двигателя нет");
     }
-
 }

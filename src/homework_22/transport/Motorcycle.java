@@ -1,8 +1,6 @@
-package lesson_23;
+package homework_22.transport;
 
-
-
-public class Motorcycle extends Vehicle {
+public class Motorcycle extends Vehicle{
 
     public Motorcycle(Engine engine) {
         super();

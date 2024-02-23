@@ -1,4 +1,4 @@
-package lesson_25.generics;
+package lesson_25;
 import lesson_22.Cat;
 public class GenericsApp {
     public static void main(String[] args) {

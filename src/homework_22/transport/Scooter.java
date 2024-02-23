@@ -1,8 +1,6 @@
-package lesson_23;
+package homework_22.transport;
 
-
-
-abstract public class Scooter extends Vehicle {
+abstract public class Scooter extends Vehicle{
 
 
     @Override

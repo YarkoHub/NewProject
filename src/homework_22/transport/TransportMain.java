@@ -1,6 +1,4 @@
-package lesson_23;
-
-
+package homework_22.transport;
 
 import java.util.Arrays;
 

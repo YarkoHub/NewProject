@@ -1,6 +1,6 @@
 package homework_21;
 
-public class Component {
+public class  Component {
 
     private String brand;
     private String model;

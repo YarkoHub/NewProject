@@ -1,6 +1,6 @@
 package lesson_24.transport;
 
-import com.sun.jdi.connect.Transport;
+
 
 public class Airplane extends Transport implements Flyable{
 
