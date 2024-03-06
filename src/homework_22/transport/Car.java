@@ -9,7 +9,7 @@ public class Car extends Vehicle{
 
     public Car (Engine engine) {
         super();
-        this.setEngine(engine);
+        //this.setEngine(engine);
     }
 
     @Override

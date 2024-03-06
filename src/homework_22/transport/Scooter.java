@@ -3,7 +3,7 @@ package homework_22.transport;
 abstract public class Scooter extends Vehicle{
 
 
-    @Override
+    //@Override
     public void setEngine(Engine engine) {
         setEngine(new Engine(30, "Benz"));
     }

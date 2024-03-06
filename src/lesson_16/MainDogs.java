@@ -8,10 +8,14 @@ public class MainDogs {
 
         System.out.println(dog.whoAmI());
 
+        dog.eat();
+        dog.eat();
+        dog.eat();
         dog.run();
         dog.run();
         dog.run();
         dog.run();
+
 
 
         System.out.println(" \n====================== ");

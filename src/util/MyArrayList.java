@@ -1,6 +1,7 @@
 package util;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class MyArrayList<T> implements MyList<T> {
 
@@ -194,6 +195,7 @@ public class MyArrayList<T> implements MyList<T> {
         cursor--;
         return value;
     }
+
 
     @Override
     public boolean remove(T value) {

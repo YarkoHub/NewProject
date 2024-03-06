@@ -4,7 +4,7 @@ public class Motorcycle extends Vehicle{
 
     public Motorcycle(Engine engine) {
         super();
-        this.setEngine(engine);
+       // this.setEngine(engine);
     }
 
     @Override
