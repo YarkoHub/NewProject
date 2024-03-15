@@ -1,4 +1,4 @@
-package lesson_30.enums;
+package lesson_30;
 
 public class DaysMain {
     public static void main(String[] args) {

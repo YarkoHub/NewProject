@@ -1,4 +1,4 @@
-package lesson_30.enums;
+package lesson_30;
 
 public enum Day {
 
