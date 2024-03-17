@@ -13,12 +13,17 @@ public interface InterfaceHashMap<K, V>{
     //    //Удалить пару ключ-значение
     V remove(Object key);
 
+    void resize();
+
     int size();
 
     boolean isEmpty();
 
     boolean containsKey(Object key);
     void clear();
+
+    //V removeNode(MyHashMap.Node<K, V> previous, MyHashMap.Node<K, V> current, int index);
+
     Set<K> keySet();
     Collection<V> values();
     V getOrDefault(Object key, V defaultValue);

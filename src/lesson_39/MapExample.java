@@ -28,7 +28,7 @@ public class MapExample {
 
         System.out.println("\n==========================");
 
-        String value1 = map.get(17);
+        String value1 = map.get(177);
         String defaultValue = "Default";
         if (value1 == null) value1 = defaultValue;
         System.out.println(value1);

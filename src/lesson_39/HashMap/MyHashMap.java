@@ -2,7 +2,7 @@ package lesson_39.HashMap;
 
 import java.util.*;
 
-public class MyHashMap<K, V> implements InterfaceHashMap<K, V> {
+public abstract class MyHashMap<K, V> implements InterfaceHashMap<K, V> {
 
     private Node<K, V>[] buckets;
     private int capacity = 16;
@@ -13,60 +13,83 @@ public class MyHashMap<K, V> implements InterfaceHashMap<K, V> {
         this.buckets = (Node<K, V>[]) new Node[capacity];
     }
 
-    /*
-    1. Вычислить хэш-код ключа.
-    2. На основание кэша определить индекс корзины в массиве.
-    3. Если в корзине еще нет элементов - положить новую пару ключ-значение
-    4. Если в корзине есть элементы: пройти по цепочке элементов, проверить ключи на совпадение.
-    4.1. Если ключи совпадают - обновить значение для соответствующего ключа
-    4.2. Если не найдено совпадений ключей - приклеить новую пару в конец списка
-     */
+
     @Override
     public V put(K key, V value) {
-        return null;
+        int index = getIndex(key, capacity); // Вычисляем индекс корзины
+        Node<K, V> node = buckets[index]; // Получаем первую ноду в корзине
+        Node<K, V> newNode = new Node<>(key, value); // Создаем новую ноду для вставки
+
+        // Если корзина пуста, просто добавляем новую ноду
+        if (node == null) {
+            buckets[index] = newNode;
+            size++;
+            // Проверяем, не пора ли увеличить размер массива
+            if ((double) size / capacity > loadFactor) {
+                resize();
+            }
+            return null; // Новый элемент добавлен успешно
+        }
+
+        Node<K, V> prev = null;
+        // Проходим по цепочке, чтобы найти нужный ключ
+        while (node != null) {
+            if (node.key.equals(key)) { // Если ключ найден, обновляем значение
+                V oldValue = node.value;
+                node.value = value;
+                return oldValue; // Возвращаем старое значение
+            }
+            prev = node;
+            node = node.next;
+        }
+        // Если ключ не найден в цепочке, добавляем его в конец
+        prev.next = newNode;
+        size++;
+        // Проверяем, не пора ли увеличить размер массива
+        if ((double) size / capacity > loadFactor) {
+            resize();
+        }
+        return null; // Новый элемент добавлен успешно
     }
 
-    /*
-    Для получения значения по ключу
-    1. Получить хэш ключа. Определить индекс ячейки в массиве
-    2. Проводится поиск в этой ячейке. Если элемент/ы присутствуют, сверить ключи для каждого?
-    2.1. если ключи совпали - вернуть значение
-    2.2. если не совпали - вернуть null
-     */
+
     @Override
     public V get(Object key) {
-        return null;
+        int index = getIndexObject(key); // Вычисляем индекс корзины
+        Node<K, V> node = buckets[index]; // Получаем первую ноду в корзине
+
+        // Проходим по цепочке, чтобы найти нужный ключ
+        while (node != null) {
+            if (node.key.equals(key)) { // Если ключ найден, возвращаем значение
+                return node.value;
+            }
+            node = node.next;
+        }
+        return null; // Ключ не найден
     }
 
-    /*
-    1. Надо проверить если в карте нода с соответсвующий ключом
-    2. Если есть - удалить эту ноду, вернув значение, которое соответствовало ключу
-    2.1. Если нет - вернуть null
-     */
+
     @Override
     public V remove(Object key) {
-        /*
-        1. Получить индекс
-        2. Пройти по всем нодам в цепочке, сравнить ключи
-         */
+        int index = getIndexObject(key); // Вычисляем индекс корзины
+        Node<K, V> node = buckets[index]; // Получаем первую ноду в корзине
+        Node<K, V> prev = null;
 
-
-        return null;
-    }
-
-    private V removeNode(Node<K, V> previous, Node<K, V> current, int index) {
-        /* Для удаления ноды нам нужно знать:
-        1. Есть ли нода перед удаляемой
-        2. Под каким индексом в массиве она находится
-        3. Ссылка на саму удаляемую ноду.
-         */
-
-        V value = current.value;
-
-        //TODO
-
-        size--;
-        return value;
+        // Проходим по цепочке, чтобы найти нужный ключ
+        while (node != null) {
+            if (node.key.equals(key)) { // Если ключ найден
+                if (prev != null) {
+                    prev.next = node.next; // Удаляем ноду из цепочки
+                } else {
+                    buckets[index] = node.next; // Если это первый элемент в корзине
+                }
+                size--; // Уменьшаем размер карты
+                return node.value; // Возвращаем удаленное значение
+            }
+            prev = node;
+            node = node.next;
+        }
+        return null; // Ключ не найден
     }
 
     @Override
@@ -84,22 +107,32 @@ public class MyHashMap<K, V> implements InterfaceHashMap<K, V> {
 
     @Override
     public Collection<V> values() {
-        Collection<V> result = new ArrayList<>();
+        List<V> values = new ArrayList<>();
 
-        // Todo
-
-        return result;
+        for (Node<K, V> bucket : buckets) {
+            Node<K, V> node = bucket;
+            // Проходим по цепочке и добавляем все значения в список
+            while (node != null) {
+                values.add(node.value);
+                node = node.next;
+            }
+        }
+        return values;
     }
 
     @Override
     public boolean containsKey(Object key) {
-        /*
-        1. Получить хэш ключа и индекс
-        2. Пройти по цепочке, проверить ключи на равенство
-         */
+        int index = getIndexObject(key); // Вычисляем индекс корзины
+        Node<K, V> node = buckets[index]; // Получаем первую ноду в корзине
 
-
-        return false;
+        // Проходим по цепочке, чтобы найти нужный ключ
+        while (node != null) {
+            if (node.key.equals(key)) { // Если ключ найден, возвращаем true
+                return true;
+            }
+            node = node.next;
+        }
+        return false; // Ключ не найден
     }
 
     @Override
@@ -109,38 +142,79 @@ public class MyHashMap<K, V> implements InterfaceHashMap<K, V> {
         size = 0;
     }
 
+
+
+   // @Override
+    public V removeNode(Node<K, V> previous, Node<K, V> current, int index) {
+        V value = current.value; // Сохраняем значение текущего узла
+
+        if (previous == null) {
+            // Если предыдущий узел равен null, значит, удаляемый узел находится в начале цепочки
+            buckets[index] = current.next; // Обновляем начало цепочки
+        } else {
+            // Иначе удаляемый узел находится в середине или в конце цепочки
+            previous.next = current.next; // Пропускаем удаляемый узел
+        }
+
+        size--; // Уменьшаем размер хэш-таблицы
+        return value; // Возвращаем значение удаленного узла
+    }
+
     @Override
     public V getOrDefault(Object key, V defaultValue) {
-        //Todo
-        return null;
+        int index = getIndexObject(key); // Получаем индекс корзины для данного ключа
+        Node<K, V> node = buckets[index]; // Получаем первый узел в корзине
+
+        // Проверяем цепочку в корзине на наличие ключа
+        while (node != null) {
+            if (node.key.equals(key)) { // Если ключ найден, возвращаем его значение
+                return node.value;
+            }
+            node = node.next; // Переходим к следующему узлу в цепочке
+        }
+
+        return defaultValue; // Возвращаем значение по умолчанию, если ключ не найден
     }
 
     @Override
     public boolean isEmpty() {
-        //Todo
-        return true;
+        return size == 0; // Возвращаем true, если размер карты равен нулю, иначе false
     }
 
-    private void resize() {
+    @Override
+    public void resize() {
         System.out.println("\nПересчет карты==============\n");
-        // TODO увеличить массив, перераспределить элементы
-        /*
-        1. Увеличить capacity
-        2. Создать новый массив
-        3. Пересчитать хэши и индексы для всех существующий пар
-        4. Перекинуть ссылки массивов
-         */
 
-        capacity = capacity * 2;
+        // Увеличиваем емкость вдвое
+        capacity *= 2;
+
+        // Создаем новый массив увеличенной емкости
         Node<K, V>[] newBuckets = (Node<K, V>[]) new Node[capacity];
 
-        //Todo реализовать resize()
+        // Переносим все элементы из старого массива в новый, пересчитывая хэши и индексы
+        for (Node<K, V> node : buckets) {
+            while (node != null) {
+                // Вычисляем новый индекс для узла в новом массиве
+                int newIndex = getIndex(node.key, capacity);
 
-        System.out.println("Пересчет завершен");
+                // Сохраняем ссылку на следующий узел, чтобы не потерять цепочку
+                Node<K, V> next = node.next;
 
+                // Присваиваем текущему узлу новую цепочку
+                node.next = newBuckets[newIndex];
+
+                // Обновляем ссылку на узел в новом массиве
+                newBuckets[newIndex] = node;
+
+                // Переходим к следующему узлу в старом массиве
+                node = next;
+            }
+        }
+
+        // Обновляем ссылку на массив
         buckets = newBuckets;
 
-
+        System.out.println("Пересчет завершен");
     }
 
     @Override
@@ -156,14 +230,13 @@ public class MyHashMap<K, V> implements InterfaceHashMap<K, V> {
         return sb.append("]").toString();
     }
 
-    private int getIndex(K key) {
+    private int getIndex(K key, int capacity) {
         //проверка ключа на null
         if (key == null) return 0;
 
 
-
         // capacity ДОЛЖНО быть степенью двойки
-        int index = key.hashCode() & (capacity - 1);
+        int index = key.hashCode() & (this.capacity - 1);
 
 //        System.out.println("index: " + index);
         return index;
