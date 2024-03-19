@@ -1,9 +1,9 @@
-package lesson_43;
+package TestHome;
 
 public class EmailValidator {
     // ключевое слово throw - используется для явного выброса (порождения/инициализации) исключения
 
-    public static void validate (String email) throws EmailValidateException {
+    public static void validate(String email) throws EmailValidateException {
 
         // проверяем что пришел не null и не пустая строка
         if (email == null || email.isEmpty()) throw new EmailValidateException("Empty email");
@@ -16,8 +16,6 @@ public class EmailValidator {
         // 2. Должна быть точка после @
 
         // Method overload - starts after with the index (in this case, the sign index @
-        // Перегрузка метода — начинается после с индекса (в данном случае знак индекса @
-
         int indexFirstDotAfterAt = email.indexOf('.', indexAt);
         if (indexFirstDotAfterAt == -1 || indexFirstDotAfterAt == indexAt + 1) throw new EmailValidateException(". after @ error");
 
@@ -30,13 +28,11 @@ public class EmailValidator {
 
 
         // 5. Only alphabet characters, numbers, '-', '_', '.', '@' can only be present.
-        // Могут присутствовать только символы алфавита, цифры, '-', '_', '.', '@'.
 
         for (int i = 0; i < email.length(); i++) {
             char c = email.charAt(i);
 
             //true, if the symbol satisfies at least one of the criteria.
-            //true, если символ удовлетворяет хотя бы одному из критериев.
             boolean isCharValid = (
                     Character.isAlphabetic(c)
                             || Character.isDigit(c)
@@ -51,7 +47,6 @@ public class EmailValidator {
         }
 
         // All checks passed, nowhere did the method return false ->
-        // Все проверки пройдены, метод нигде не вернул false ->
 
     }
 }
